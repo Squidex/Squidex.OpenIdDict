@@ -1,0 +1,33 @@
+name: Nuget Build
+
+on:
+  push:
+    branches:
+      - 'main'
+  pull_request:
+    branches:
+      - 'main'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+        
+    steps:
+    - uses: actions/checkout@v4.2.2
+ 
+    - name: setup dotnet
+      uses: actions/setup-dotnet@v4.2.0
+      with:
+        dotnet-version: 8.0.x
+
+    - name: test
+      run: |
+        dotnet test --filter Category!=Dependencies
+
+    - name: pack
+      run: |
+        dotnet pack -c Release
+
+    - name: publish
+      run: |
+        dotnet nuget push **/*.nupkg --source 'https://api.nuget.org/v3/index.json' --skip-duplicate -k ${{ secrets.nuget }}
