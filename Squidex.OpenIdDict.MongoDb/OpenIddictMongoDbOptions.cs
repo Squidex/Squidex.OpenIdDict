@@ -12,11 +12,6 @@ namespace OpenIddict.MongoDb;
 public sealed class OpenIddictMongoDbOptions
 {
     /// <summary>
-    /// Gets or sets the name of the applications collection (by default, openiddict.applications).
-    /// </summary>
-    public string ApplicationsCollectionName { get; set; } = "openiddict.applications";
-
-    /// <summary>
     /// Gets or sets the name of the authorizations collection (by default, openiddict.authorizations).
     /// </summary>
     public string AuthorizationsCollectionName { get; set; } = "openiddict.authorizations";
@@ -26,11 +21,6 @@ public sealed class OpenIddictMongoDbOptions
     /// If no value is explicitly set, the database is resolved from the DI container.
     /// </summary>
     public IMongoDatabase? Database { get; set; }
-
-    /// <summary>
-    /// Gets or sets the name of the scopes collection (by default, openiddict.scopes).
-    /// </summary>
-    public string ScopesCollectionName { get; set; } = "openiddict.scopes";
 
     /// <summary>
     /// Gets or sets the name of the tokens collection (by default, openiddict.tokens).

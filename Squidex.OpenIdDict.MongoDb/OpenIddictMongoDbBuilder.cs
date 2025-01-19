@@ -48,18 +48,6 @@ public sealed class OpenIddictMongoDbBuilder
     }
 
     /// <summary>
-    /// Configures OpenIddict to use the specified entity as the default application entity.
-    /// </summary>
-    /// <returns>The <see cref="OpenIddictMongoDbBuilder"/> instance.</returns>
-    public OpenIddictMongoDbBuilder ReplaceDefaultApplicationEntity<TApplication>()
-        where TApplication : OpenIddictMongoDbApplication
-    {
-        Services.Configure<OpenIddictCoreOptions>(options => options.DefaultApplicationType = typeof(TApplication));
-
-        return this;
-    }
-
-    /// <summary>
     /// Configures OpenIddict to use the specified entity as the default authorization entity.
     /// </summary>
     /// <returns>The <see cref="OpenIddictMongoDbBuilder"/> instance.</returns>
@@ -67,18 +55,6 @@ public sealed class OpenIddictMongoDbBuilder
         where TAuthorization : OpenIddictMongoDbAuthorization
     {
         Services.Configure<OpenIddictCoreOptions>(options => options.DefaultAuthorizationType = typeof(TAuthorization));
-
-        return this;
-    }
-
-    /// <summary>
-    /// Configures OpenIddict to use the specified entity as the default scope entity.
-    /// </summary>
-    /// <returns>The <see cref="OpenIddictMongoDbBuilder"/> instance.</returns>
-    public OpenIddictMongoDbBuilder ReplaceDefaultScopeEntity<TScope>()
-        where TScope : OpenIddictMongoDbScope
-    {
-        Services.Configure<OpenIddictCoreOptions>(options => options.DefaultScopeType = typeof(TScope));
 
         return this;
     }
@@ -96,21 +72,6 @@ public sealed class OpenIddictMongoDbBuilder
     }
 
     /// <summary>
-    /// Replaces the default applications collection name (by default, openiddict.applications).
-    /// </summary>
-    /// <param name="name">The collection name</param>
-    /// <returns>The <see cref="OpenIddictMongoDbBuilder"/> instance.</returns>
-    public OpenIddictMongoDbBuilder SetApplicationsCollectionName(string name)
-    {
-        if (string.IsNullOrEmpty(name))
-        {
-            throw new ArgumentException(SR.GetResourceString(SR.ID0261), nameof(name));
-        }
-
-        return Configure(options => options.ApplicationsCollectionName = name);
-    }
-
-    /// <summary>
     /// Replaces the default authorizations collection name (by default, openiddict.authorizations).
     /// </summary>
     /// <param name="name">The collection name</param>
@@ -123,21 +84,6 @@ public sealed class OpenIddictMongoDbBuilder
         }
 
         return Configure(options => options.AuthorizationsCollectionName = name);
-    }
-
-    /// <summary>
-    /// Replaces the default scopes collection name (by default, openiddict.scopes).
-    /// </summary>
-    /// <param name="name">The collection name</param>
-    /// <returns>The <see cref="OpenIddictMongoDbBuilder"/> instance.</returns>
-    public OpenIddictMongoDbBuilder SetScopesCollectionName(string name)
-    {
-        if (string.IsNullOrEmpty(name))
-        {
-            throw new ArgumentException(SR.GetResourceString(SR.ID0261), nameof(name));
-        }
-
-        return Configure(options => options.ScopesCollectionName = name);
     }
 
     /// <summary>
