@@ -47,7 +47,7 @@ public sealed class OpenIddictEntityFrameworkCoreAuthorizationStoreResolver : IO
 
         var type = _cache.GetOrAdd(typeof(TAuthorization), key =>
         {
-            var root = OpenIddictHelpers.FindGenericBaseType(key, typeof(OpenIddictEntityFrameworkCoreAuthorization<>)) ??
+            var root = OpenIddictHelpers.FindGenericBaseType(key, typeof(OpenIddictEntityFrameworkCoreAuthorization<,>)) ??
                 throw new InvalidOperationException(SR.GetResourceString(SR.ID0254));
 
             var context = _options.CurrentValue.DbContextType ??
